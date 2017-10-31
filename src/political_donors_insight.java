@@ -69,7 +69,7 @@ public class political_donors_insight {
             keys[index]= (String)key_set_iterator.next();
             index++;
         }
-        Arrays.sort(keys); //sorts the keys alphabatically by recipient and chronologically by date
+        Arrays.sort(keys); //sorts the keys alphabatically by recipient and then chronologically by date
         SimpleDateFormat sdf = new SimpleDateFormat("MMddyyyy");
         Calendar calendar = Calendar.getInstance();
         for(int key_index=0;key_index<index;key_index++) {
@@ -229,7 +229,7 @@ public class political_donors_insight {
             date_map_amt.replace(date_key, running_total); //replaces the existing total with the new total
         }
         else {
-            //if the hashmap does not contain the key, it creates a new key and stores a list with only 1 element for that key
+            //if the hashmap does not contain the key, it creates a new key and stores a list with 1 element for that key
             ArrayList<Integer> cont_list = new ArrayList<>();
             cont_list.add(Integer.parseInt(record.get(3)));
             date_map_median.put(date_key, cont_list); //adds a new key-list pair to the map
@@ -237,7 +237,7 @@ public class political_donors_insight {
         }        
     }
     
-    //function to all the conditions the input file must pass
+    //function to check all the conditions the input file must pass
     public static void condition_check(ArrayList<String> record) { 
         String cmte_id = record.get(0);
         String zip_code = record.get(1);
@@ -266,7 +266,7 @@ public class political_donors_insight {
             comment += "bz";
         }
         SimpleDateFormat sdf = new SimpleDateFormat("MMddyyyy");
-        sdf.setLenient(false); //a "switch" to turn on strick parsing, i.e. the date must match the given standard
+        sdf.setLenient(false); //a "switch" to turn on strict parsing, i.e. the date must match the given standard
         try {
             Date date = sdf.parse(t_dt);
         }catch(ParseException e) { //if it doesn't match, it is flagged against processing for median by date
